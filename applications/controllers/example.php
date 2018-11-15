@@ -26,7 +26,7 @@ class Example extends MY_Controller {
 		{
 			$this->load->model('Barang', 'barang');
 			$crud = generate_crud('barang');
-			$crud->columns('Nama_Barang', 'Kategori', 'Stok', 'Harga_Beli','Harga_Jual');
+			$crud->columns('Nama_Barang', 'Jenis', 'Stok', 'Harga_Beli','Harga_Jual');
 			$crud->callback_before_insert(array($this, 'callback_before_create_user'));
 
 			$this->mTitle = "Data Barang";
