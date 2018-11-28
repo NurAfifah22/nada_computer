@@ -29,8 +29,11 @@ class User extends MY_Controller {
 	{
 		// CRUD table
 		$crud = generate_crud('user');
-		$crud->columns('username', 'full_name', 'role', 'No_hp', 'Alamat');
-		$crud->unset_edit_fields('password');
+		$crud->columns('full_name', 'role', 'username', 'No_hp', 'Alamat');
+		$crud->display_as('full_name', 'Nama Pegawai');
+		$crud->display_as('role', 'Jabatan');
+		$crud->unset_edit_fields('password', 'active');
+		$crud->unset_add_fields('active');
 		$crud->add_action('Reset Password', '', 'user/reset_password', 'fa fa-rotate-left fa-lg');
 		$crud->callback_before_insert(array($this, 'callback_before_create_user'));
 

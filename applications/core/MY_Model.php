@@ -656,31 +656,31 @@ class MY_Model extends CI_Model
      * ------------------------------------------------------------ */
 
     /**
-     * MySQL DATETIME created_at and updated_at
+     * MySQL DATETIME Tanggal_Servis and Tanggal_Selesai
      */
-    public function created_at($row)
+    public function Tanggal_Servis($row)
     {
         if (is_object($row))
         {
-            $row->created_at = date('Y-m-d H:i:s');
+            $row->Tanggal_Servis = date('Y-m-d H:i:s');
         }
         else
         {
-            $row['created_at'] = date('Y-m-d H:i:s');
+            $row['Tanggal_Servis'] = date('Y-m-d H:i:s');
         }
 
         return $row;
     }
 
-    public function updated_at($row)
+    public function Tanggal_Selesai($row)
     {
         if (is_object($row))
         {
-            $row->updated_at = date('Y-m-d H:i:s');
+            $row->Tanggal_Selesai = date('Y-m-d H:i:s');
         }
         else
         {
-            $row['updated_at'] = date('Y-m-d H:i:s');
+            $row['Tanggal_Selesai'] = date('Y-m-d H:i:s');
         }
 
         return $row;
