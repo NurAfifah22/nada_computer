@@ -10,6 +10,8 @@ class Example extends MY_Controller {
 		$this->load->helper('crud');
 
 		$this->load->model('Servis', 'penservisan');
+
+		$this->load->model('Penjualan', 'penjualan');
 	}
 
 	public function index()
@@ -70,6 +72,7 @@ class Example extends MY_Controller {
 			$crud->set_relation('ID_Barang', 'barang', 'Nama_Barang');
 			$crud->set_relation('id', 'user', 'full_name');
 			$crud->unset_add_fields('Tanggal_Servis');
+			$crud->add_action('Print','','example/print_nota_penjualan', 'fa fa-print fa-lg');
 			$crud->display_as('ID_Servis', 'Unit Servis');
 			$crud->display_as('ID_Barang', 'Nama Barang');
 			$crud->display_as('id', 'Nama Pegawai');
@@ -79,6 +82,12 @@ class Example extends MY_Controller {
 			$this->mViewFile = '_partial/crud';
 			$this->mViewData['crud_data'] = $crud->render();
 		}
+	}
+	public function print_nota_penjualan($ID_Jual)
+	{
+		$this->mTitle = "Nota Penjualan Print";
+		$this->mViewFile = 'admin/nota_penjualan';
+		$this->mViewData['target'] = $this->penjualan->get($ID_Jual);
 	}
 
 	public function buka_nota($ID_Servis)
