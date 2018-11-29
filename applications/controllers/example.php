@@ -2,8 +2,7 @@
 
 class Example extends MY_Controller {
 
-<<<<<<< HEAD
-=======
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +12,6 @@ class Example extends MY_Controller {
 		$this->load->model('Servis', 'penservisan');
 	}
 
->>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
 	public function index()
 	{
 		$this->mTitle = "Examples";
@@ -22,12 +20,11 @@ class Example extends MY_Controller {
 	
 	public function demo($id)
 	{
-<<<<<<< HEAD
+
 		$this->push_breadcrumb('Examples', 'example');
 		$this->mTitle = "Demo ".$id;
 		$this->mViewFile = 'example/demo';
-		$this->mViewData['back_url'] = 'example';
-=======
+		//$this->mViewData['back_url'] = 'example';
 		$this->push_breadcrumb('Data', 'example');
 		
 		if ($id==1) 
@@ -75,8 +72,6 @@ class Example extends MY_Controller {
 			$this->mViewFile = '_partial/crud';
 			$this->mViewData['crud_data'] = $crud->render();
 		}
-		
-		//$this->mViewData['back_url'] = 'example';
 	}
 
 	public function buka_nota($ID_Servis)
@@ -84,6 +79,5 @@ class Example extends MY_Controller {
 		$this->mTitle = "Backend Users";
 		$this->mViewFile = 'admin/reset_password';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
->>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
 	}
 }
