@@ -75,8 +75,8 @@ class Example extends MY_Controller {
 
 	public function buka_nota($ID_Servis)
 	{
-		$this->mTitle = "Backend Users";
-		$this->mViewFile = 'admin/reset_password';
+		$this->mTitle = "Data Penservisan";
+		$this->mViewFile = 'example/buka_nota_S';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
 	}
 }
