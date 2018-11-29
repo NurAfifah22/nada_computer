@@ -2,6 +2,8 @@
 
 class Example extends MY_Controller {
 
+<<<<<<< HEAD
+=======
 	public function __construct()
 	{
 		parent::__construct();
@@ -11,17 +13,21 @@ class Example extends MY_Controller {
 		$this->load->model('Servis', 'penservisan');
 	}
 
+>>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
 	public function index()
 	{
 		$this->mTitle = "Examples";
-		$this->mViewData = 'example/index';
-
-		redirect('example/demo');
-
+		$this->mViewFile = 'example/index';
 	}
 	
 	public function demo($id)
 	{
+<<<<<<< HEAD
+		$this->push_breadcrumb('Examples', 'example');
+		$this->mTitle = "Demo ".$id;
+		$this->mViewFile = 'example/demo';
+		$this->mViewData['back_url'] = 'example';
+=======
 		$this->push_breadcrumb('Data', 'example');
 		
 		if ($id==1) 
@@ -44,7 +50,9 @@ class Example extends MY_Controller {
 			$crud->display_as('id', 'Nama Pegawai');
 			$crud->unset_add_fields('Tanggal_Servis');
 			$crud->add_action('Buka Nota', '', 'example/buka_nota', 'fa fa-list-alt fa-lg');
+			$crud->add_action('Print','','example/print_nota', 'fa fa-print fa-lg');
 			$crud->callback_before_insert();
+
 
 			$this->mTitle = "Data Penservisan";
 			$this->mViewFile = '_partial/crud';
@@ -77,6 +85,14 @@ class Example extends MY_Controller {
 	{
 		$this->mTitle = "Backend Users";
 		$this->mViewFile = 'admin/reset_password';
+		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
+>>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
+	}
+
+	public function print_nota($ID_Servis)
+	{
+		$this->mTitle = "Nota Print";
+		$this->mViewFile = 'admin/nota';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
 	}
 }

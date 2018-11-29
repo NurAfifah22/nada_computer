@@ -38,7 +38,11 @@ class Admin extends MY_Controller {
 		$crud->unset_edit();
 		$crud->unset_read();
 		$crud->unset_delete();
+		
+
 		$crud->callback_before_insert();
+
+
 
 		$this->mTitle = "Backend Users";
 		$this->mViewFile = '_partial/crud';
