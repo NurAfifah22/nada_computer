@@ -2,6 +2,8 @@
 
 class Example extends MY_Controller {
 
+<<<<<<< HEAD
+=======
 	public function __construct()
 	{
 		parent::__construct();
@@ -11,17 +13,21 @@ class Example extends MY_Controller {
 		$this->load->model('Servis', 'penservisan');
 	}
 
+>>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
 	public function index()
 	{
 		$this->mTitle = "Examples";
-		$this->mViewData = 'example/index';
-
-		redirect('example/demo');
-
+		$this->mViewFile = 'example/index';
 	}
 	
 	public function demo($id)
 	{
+<<<<<<< HEAD
+		$this->push_breadcrumb('Examples', 'example');
+		$this->mTitle = "Demo ".$id;
+		$this->mViewFile = 'example/demo';
+		$this->mViewData['back_url'] = 'example';
+=======
 		$this->push_breadcrumb('Data', 'example');
 		
 		if ($id==1) 
@@ -78,5 +84,6 @@ class Example extends MY_Controller {
 		$this->mTitle = "Data Penservisan";
 		$this->mViewFile = 'example/buka_nota_S';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
+>>>>>>> aab88516a0d3790a009d4be7c16f81d24e8a3e2e
 	}
 }
