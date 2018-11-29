@@ -7,6 +7,8 @@ class Example extends MY_Controller {
 		parent::__construct();
 
 		$this->load->helper('crud');
+
+		$this->load->model('Servis', 'penservisan');
 	}
 
 	public function index()
@@ -36,8 +38,7 @@ class Example extends MY_Controller {
 		
 		elseif ($id==2) 
 		{
-			$this->load->model('Servis', 'Belongs_to_model');
-			$crud = generate_crud('penservisan', 'user');
+			$crud = generate_crud('penservisan');
 			$crud->columns('Tanggal_Servis','Unit','Keluhan','Kelengkapan','Status','id');
 			$crud->set_relation('id', 'user', 'full_name');
 			$crud->display_as('id', 'Nama Pegawai');
@@ -55,7 +56,7 @@ class Example extends MY_Controller {
 			$this->load->model('Penjualan', 'penjualan');
 			$crud = generate_crud('penjualan');
 			$crud->columns('ID_Servis','Tanggal_Jual','ID_Barang','Harga_Satuan','Jumlah','Harga_Total','id');
-			$crud->set_relation('ID_Servis', 'penservisan', 'Unit');
+			$crud->set_relation('ID_Servis', 'penservisan', '{ID_Servis} - {Unit}');
 			$crud->set_relation('ID_Barang', 'barang', 'Nama_Barang');
 			$crud->set_relation('id', 'user', 'full_name');
 			$crud->unset_add_fields('Tanggal_Servis');
@@ -72,11 +73,10 @@ class Example extends MY_Controller {
 		//$this->mViewData['back_url'] = 'example';
 	}
 
-	public function buka_nota($id_servis)
+	public function buka_nota($ID_Servis)
 	{
-
 		$this->mTitle = "Backend Users";
-		$this->mViewFile = 'example/buka_nota_S';
-		$this->mViewData['target'] = $this->penservisan->get_primary_key($id_servis);
+		$this->mViewFile = 'admin/reset_password';
+		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
 	}
 }

@@ -7,32 +7,38 @@ class Admin extends MY_Controller {
 		parent::__construct();
 
 		// only admin role can access this controller
-		if ( !verify_role('admin') )
+		/*if ( !verify_role('admin') )
 		{
 			redirect();
 			exit;
-		}
-
+		}*/
 		$this->load->helper('crud');
-		$this->load->model('Backend_user_model', 'user');
+		$this->load->model('penjualan', 'penjualan');
 	}
 
 	public function index()
 	{
-		redirect('admin/backend_user');
+		redirect('admin/laporan');
 	}
 
 	/**
 	 * Backend users
 	 */
-	public function backend_user()
+	public function laporan()
 	{
 		// CRUD table
-		$crud = generate_crud('user');
-		$crud->columns('username', 'full_name', 'role', 'No_hp', 'Alamat');
-		$crud->unset_edit_fields('password');
-		$crud->add_action('Reset Password', '', 'admin/reset_password', 'fa fa-rotate-left fa-lg');
-		$crud->callback_before_insert(array($this, 'callback_before_create_user'));
+
+		$crud = generate_crud('penjualan');
+		//$crud->set_theme('bootstrap');
+		$crud->columns('Tanggal_Jual', 'ID_Barang','Harga_Satuan', 'Jumlah', 'Harga_Total');
+		$crud->set_relation('ID_Barang', 'barang', '{Nama_Barang} {Harga_Jual}');
+		$crud->display_as('ID_Barang', 'Nama Barang');
+		//$crud->add_column();
+		$crud->unset_add();
+		$crud->unset_edit();
+		$crud->unset_read();
+		$crud->unset_delete();
+		$crud->callback_before_insert();
 
 		$this->mTitle = "Backend Users";
 		$this->mViewFile = '_partial/crud';
@@ -42,7 +48,7 @@ class Admin extends MY_Controller {
 	/**
 	 * Reset password for backend users
 	 */
-	public function reset_password($user_id)
+	/*public function reset_password($user_id)
 	{
 		$this->mTitle = "Backend Users";
 		$this->mViewFile = 'admin/reset_password';
@@ -68,9 +74,9 @@ class Admin extends MY_Controller {
 	/**
 	 * Grocery Crud callback functions
 	 */
-	public function callback_before_create_user($post_array)
+	/*public function callback_before_create_user($post_array)
 	{
 		$post_array['password'] = hash_pw($post_array['password']);
 		return $post_array;
-	}
+	}*/
 }

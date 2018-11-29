@@ -25,7 +25,7 @@ $config['menu'] = array(
 	// Example to add sections with subpages
 	'example' => array(
 		'name'      => 'Data',
-		'url'       => site_url('example'),
+		'url'       => site_url(''),
 		'icon'      => 'fa fa-folder-open',
 		'children'  => array(
 			'Barang'		=> site_url('example/demo/1'),
@@ -40,7 +40,7 @@ $config['menu'] = array(
 		'url'       => site_url(''),
 		'icon'      => 'fa fa-area-chart',
 		'children'  => array(
-			'Laporan Transaksi'		=> site_url(''),
+			'Laporan Transaksi'	=> site_url('admin/laporan'),
 		)
 	),
 
