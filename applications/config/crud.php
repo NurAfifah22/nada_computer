@@ -13,7 +13,7 @@
 $config['grocery_crud'] = array(
 
 	// [Optional] fields to be omitted from CRUD form
-	'unset_fields'	=> array('Tanggal_Servis')
+	'unset_fields'	=> array('')
 );
 
 
