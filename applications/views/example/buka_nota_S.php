@@ -11,7 +11,7 @@
 				<p>Tanggal Servis: <strong><?php echo $target['Tanggal_Servis']; ?></strong></p>
 				<p>Status Servis: <strong><?php echo $target['Status']; ?></strong></p>
 
-			<?php echo box_close( btn_submit('Confirm') ); ?>
+			<?php //echo box_close( btn_submit('') ); ?>
 		<?php echo form_close(); ?>
 
 	</div>

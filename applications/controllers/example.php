@@ -23,7 +23,7 @@ class Example extends MY_Controller {
 		$this->push_breadcrumb('Examples', 'example');
 		$this->mTitle = "Demo ".$id;
 		$this->mViewFile = 'example/demo';
-		$this->mViewData['back_url'] = 'example';
+		//$this->mViewData['back_url'] = 'example';
 
 		$this->push_breadcrumb('Examples', 'example');
 		$this->mTitle = "Demo ".$id;
@@ -86,6 +86,7 @@ class Example extends MY_Controller {
 		$this->mTitle = "Data Penservisan";
 		$this->mViewFile = 'example/buka_nota_S';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
+		$this->mViewData['back_url'] = 'example/demo/2';
 	}
 
 	public function print_nota($ID_Servis)
@@ -93,5 +94,6 @@ class Example extends MY_Controller {
 		$this->mTitle = "Nota Print";
 		$this->mViewFile = 'admin/nota';
 		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
+		$this->mViewData['back_url'] = 'example/demo/2';
 	}
 }
