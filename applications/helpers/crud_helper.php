@@ -22,11 +22,11 @@ function generate_crud($table = '')
 
 	// general settings
 	$crud->unset_jquery();
-	$crud->unset_print();
-	$crud->unset_export();
+	//$crud->unset_print();
+	//$crud->unset_export();
 
 	// hide fields from CRUD form
-	$crud->unset_fields($params['unset_fields']);
+	//$crud->unset_fields($params['unset_fields']);
 	
 	// other custom logic to be done in child controllers
 	return $crud;

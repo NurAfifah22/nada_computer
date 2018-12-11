@@ -10,27 +10,11 @@ class Example extends MY_Controller {
 		$this->load->helper('crud');
 
 		$this->load->model('Servis', 'penservisan');
-
 		$this->load->model('Penjualan', 'penjualan');
 	}
 
-	public function index()
-	{
-		$this->mTitle = "Examples";
-		$this->mViewFile = 'example/index';
-	}
-	
 	public function demo($id)
 	{
-		$this->push_breadcrumb('Examples', 'example');
-		$this->mTitle = "Demo ".$id;
-		$this->mViewFile = 'example/demo';
-		//$this->mViewData['back_url'] = 'example';
-
-		$this->push_breadcrumb('Examples', 'example');
-		$this->mTitle = "Demo ".$id;
-		$this->mViewFile = 'example/demo';
-		//$this->mViewData['back_url'] = 'example';
 
 		$this->push_breadcrumb('Data', 'example');
 		
@@ -39,6 +23,8 @@ class Example extends MY_Controller {
 			$this->load->model('Barang', 'barang');
 			$crud = generate_crud('barang');
 			$crud->columns('Nama_Barang', 'Kategori', 'Stok', 'Harga_Beli','Harga_Jual');
+			$crud->unset_export();
+			$crud->unset_print();
 			$crud->callback_before_insert();
 
 			$this->mTitle = "Data Barang";
@@ -49,18 +35,28 @@ class Example extends MY_Controller {
 		elseif ($id==2) 
 		{
 			$crud = generate_crud('penservisan');
-			$crud->columns('Tanggal_Servis','Unit','Keluhan','Kelengkapan','Status','id');
+			$crud->columns('Tanggal_Servis','Unit','Keluhan','Kelengkapan', 'ID_Barang','id', 'Tanggal_Selesai');
+			//$crud->fields('Unit','Keluhan','Kelengkapan', 'ID_Barang', 'Harga_Satuan','Status','id');
+			//$crud->field_type('ID_Barang', 'multiselect');
+			//$crud->set_read_fields('Harga_Jual');
 			$crud->set_relation('id', 'user', 'full_name');
+			$crud->set_relation('ID_Barang', 'barang', '{Nama_Barang} - {Harga_Jual}');
 			$crud->display_as('id', 'Nama Pegawai');
+			$crud->display_as('ID_Barang', 'Tindakan');
 			$crud->unset_add_fields('Tanggal_Servis');
-			$crud->add_action('Buka Nota', '', 'example/buka_nota', 'fa fa-list-alt fa-lg');
+			//$crud->unset_add();
+			$crud->unset_export();
+			$crud->unset_print();
+			//$crud->add_action('Buka Nota', '', 'example/buka_nota', 'fa fa-list-alt fa-lg');
 			$crud->add_action('Print','','example/print_nota', 'fa fa-print fa-lg');
 			$crud->callback_before_insert();
 
+			//$crud->add_button();
 
 			$this->mTitle = "Data Penservisan";
 			$this->mViewFile = '_partial/crud';
 			$this->mViewData['crud_data'] = $crud->render();
+			//$this->mViewData['back_url']='admin/nota';
 		}
 		
 		elseif ($id==3) 
@@ -72,6 +68,8 @@ class Example extends MY_Controller {
 			$crud->set_relation('ID_Barang', 'barang', 'Nama_Barang');
 			$crud->set_relation('id', 'user', 'full_name');
 			$crud->unset_add_fields('Tanggal_Servis');
+			$crud->unset_export();
+			$crud->unset_print();
 			$crud->add_action('Print','','example/print_nota_penjualan', 'fa fa-print fa-lg');
 			$crud->display_as('ID_Servis', 'Unit Servis');
 			$crud->display_as('ID_Barang', 'Nama Barang');
@@ -98,11 +96,12 @@ class Example extends MY_Controller {
 		$this->mViewData['back_url'] = 'example/demo/2';
 	}
 
-	public function print_nota($ID_Servis)
+	public function print_nota($ID_Barang)
 	{
-		$this->mTitle = "Nota Print";
+		$this->mTitle = "Nota Servis";
 		$this->mViewFile = 'admin/nota';
-		$this->mViewData['target'] = $this->penservisan->get($ID_Servis);
-		$this->mViewData['back_url'] = 'example/demo/2';
+		$this->mViewData['target'] = $this->penservisan->get($ID_Barang);
+		//$this->mViewData['target'] = $this->penservisan->data($ID_Servis);
 	}
+
 }

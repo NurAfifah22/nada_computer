@@ -19,6 +19,7 @@ class MY_Model extends CI_Model
      * guessed by pluralising the model name.
      */
     protected $_table;
+    //protected $_servis = $this->_database->query("SELECT ID_Servis, Tanggal_Servis FROM barang as b join(penservisan as p join user as u ON p.id = u.id) ON p.ID_Barang = b.ID_Barang");
 
     /**
      * The database connection object. Will be set to the default
