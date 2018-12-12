@@ -22,7 +22,8 @@ class Example extends MY_Controller {
 		{
 			$this->load->model('Barang', 'barang');
 			$crud = generate_crud('barang');
-			$crud->columns('Nama_Barang', 'Kategori', 'Stok', 'Harga_Beli','Harga_Jual');
+			$crud->columns('Nama_Barang', 'Harga_Jual');
+			$crud->display_as('Harga_Jual', 'Harga');
 			$crud->unset_export();
 			$crud->unset_print();
 			$crud->callback_before_insert();

@@ -14,17 +14,17 @@ class Login extends CI_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			$this->load->model('Backend_user_model', 'backend_users');
-			$user = $this->backend_users->get_by('username', $username);
+			$this->load->model('Backend_user_model', 'user');
+			$user = $this->user->get_by('username', $username);
 
 			// only admin and staff can login
-			if ( verify_role(['admin', 'staff'], $user) )
+			if ( verify_role(['pemilik', 'marketing'], $user) )
 			{
 				// password correct
 				if ( verify_pw($password, $user['password']) )
 				{
 					// limited fields to store in session
-					$fields = array('id', 'role', 'username', 'full_name', 'created_at');
+					$fields = array('id', 'role', 'username', 'full_name');
 					$user_data = elements($fields, $user);					
 					login_user($user);
 

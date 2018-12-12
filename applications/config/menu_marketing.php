@@ -30,7 +30,7 @@ $config['menu'] = array(
 		'children'  => array(
 			'Barang'		=> site_url('example/demo/1'),
 			'Penservisan'	=> site_url('example/demo/2'),
-			'Penjualan'		=> site_url('example/demo/3'),
+			//'Penjualan'		=> site_url('example/demo/3'),
 		)
 	),
 	// end of example
